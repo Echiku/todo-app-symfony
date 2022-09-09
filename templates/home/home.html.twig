@@ -1,0 +1,290 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Todo App{% endblock %}
+
+{% block body %}
+<style>
+
+    .avatar
+    {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      left: 1271px;
+      top: 17px;
+    }
+
+    .user-name
+    {
+      position: absolute;
+      left: 1330px;
+      top: 34px;
+      font-weight: 800;
+      }
+
+    .logout
+    {
+      position: absolute;
+      width: 0px;
+      left: 1465px;
+      top: 34px;
+      border: none;
+    }
+
+    .home-container
+    {
+        
+        width: 676px;
+        height: 65px;
+        left: 404px;
+        top: 99px;
+
+    }
+    
+    .container-list-task
+    {
+        position:relative;
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        margin-bottom: 31px;
+    }
+
+    .cadre-text
+    {
+        position: absolute;
+        width: 554px;
+        height: 65px;
+        left: 404px;
+        top: 99px;
+
+        background: #ECF3FF;
+    }
+
+    .text-task
+    {
+        position: absolute;
+        width: 400px;
+        height: 52px;
+        left: 492px;
+        top: 105px;
+
+        font-family: 'Hind Siliguri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 52px;
+        /* identical to box height */
+
+
+        color: rgba(0, 0, 0, 0.6);
+        background: #ECF3FF;
+        border: none;
+    }
+
+     .add-cadre
+     {
+        position: absolute;
+        width: 122px;
+        height: 65px;
+        left: 958px;
+        top: 99px;
+
+        background: #5275A0;
+     }
+
+     .btn-cadre-text
+     {
+        
+        width: 58px;
+        height: 52px;
+        left: 980px;
+        top: 105px;
+
+        font-family: 'Hind Siliguri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 52px;
+        /* identical to box height */
+
+
+        color: #FFFFFF;
+        cursor: pointer;
+     }
+     
+
+     .list-task
+     {
+        
+        width: 676.38px;
+        height: 65px;
+        left: 404px;
+        top: 245px;
+       
+     }
+
+     .list-cadre
+     {
+        position: absolute;
+        width: 554px;
+        height: 65px;
+        left: 404px;
+        top: 245px;
+       
+
+        background: #ECF3FF;
+     }
+
+     .edit-task
+     {
+        position: absolute;
+        width: 63.23px;
+        height: 65px;
+        left: 958px;
+        top: 245px;
+     }
+
+     .delete-task
+     {
+        position: absolute;
+        width: 59.38px;
+        height: 65px;
+        left: 1021px;
+        top: 245px;
+
+     }
+
+    .tasks-text
+    {
+        position: absolute;
+        left: 84px;
+        top: 7px;
+        font-family: 'Hind Siliguri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 52px;
+        /* identical to box height */
+
+
+        color: rgba(0, 0, 0, 0.6);
+        background: #ECF3FF;
+        border: none;
+    }
+
+
+    .message-notext
+    {
+        position: absolute;
+        left: 526px;
+        top: 310px;
+        font-family: 'Hind Siliguri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 52px;
+        color: rgba(0, 0, 0, 0.6);
+        /* background: #ECF3FF; */
+        border: none;
+        }
+
+       .flash-message
+       {
+          position:absolute;
+          width: 400px;
+          height: 52px;
+          left: 484px;
+          top: 16px;
+
+          font-family: 'Hind Siliguri';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 32px;
+          line-height: 52px;
+          /* identical to box height */
+
+
+          color: red;
+         
+          border: none;
+
+       }
+
+
+
+
+
+</style>
+<div>
+  {% for notice in app.flashes('notice') %}
+
+      {% if notice  %}
+        <div x-data="{show:true}" x-init="setTimeout(()=>show=false, 3000)" x-show="show" class="flash-message"> 
+       <p>
+        {{ notice }}
+       </p>
+  </div>
+      {% endif %}
+{% endfor %}
+  <div>
+      <img class="avatar"
+    src="{{asset('/image/avatar.png')}}"
+    alt=""
+    />
+    <span class="user-name">
+     Welcome {{ app.user.name }}
+    </span>
+  </div>
+ 
+ <div>
+        <button class="logout" type="submit">
+         <a href="{{ path('app_logout') }}">Logout</a> 
+        </button>
+  </div>
+ 
+</div>
+
+
+
+
+<div class="home-container">
+
+        <form action="/createtask" method="post">
+        <div class="cadre-text"></div>
+        <input class="text-task" type="text" name="text" placeholder="Create Todo-Task">
+
+        <button  class="add-cadre"  type="submit">
+          <span class="btn-cadre-text">Add</span>
+        </button>
+        
+      </form>
+       
+     {% if tasks is defined %}
+
+     {% if tasks is empty %}
+         <p class="message-notext">There is not Task yet !</p>
+     {% else %}
+         {% for task in tasks %}
+      <div class="container-list-task">
+        
+        <div class="list-task">
+          <div class="list-cadre">
+              <h1 class="tasks-text">{{task.title}}</h1>
+          </div>
+          <a href="/task/{{task.id}}/edit">
+            <img class="edit-task"src="{{asset('/image/edit.png')}}"alt=""/>
+          </a>
+          <a href="/delete/{{task.id}}">
+            <img class="delete-task"src="{{asset('/image/delete.png')}}"alt=""/>
+          </a>
+        </div>
+      </div>
+       {% endfor %}
+     {% endif %}
+
+    {% endif %}
+     
+       
+</div>
+{% endblock %}

@@ -1,0 +1,235 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<style>
+    .title
+    {
+        position: absolute;
+        width: 703px;
+        height: 140px;
+        left: 278px;
+        top: 41px;
+
+        font-family: 'jsMath-cmr10';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 128px;
+        line-height: 140px;
+        /* identical to box height */
+
+
+        color: #FFFFFF;
+    }
+
+    .login-cadre
+    {
+      position: absolute;
+      width: 692px;
+      height: 676px;
+      left: 689px;
+      top: 238px;
+      background:#E5E5E5;
+    }
+
+    .message
+    {
+      /* Welcome to Todo-App */
+
+
+      position: absolute;
+      width: 469px;
+      height: 78px;
+      left: 120px;
+      top: 101px;
+
+      font-family: 'Hind Siliguri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 48px;
+      line-height: 78px;
+      /* identical to box height */
+
+
+      color: #8C72B7;
+
+    }
+
+    .username-cont
+    {
+      position: absolute;
+      width: 398px;
+      height: 70px;
+      left: 809px;
+      top: 448px;
+    }
+    
+    .username-container
+    {
+      box-sizing: border-box;
+
+      position: absolute;
+      width: 398px;
+      height: 65px;
+      left: 809px;
+      top: 448px;
+
+      background: #ECF3FF;
+      border: 2px solid #000000;
+    }
+
+    .username
+    {
+      position: absolute;
+      width: 313px;
+      height: 65px;
+      left: 189px;
+      top: 215px;
+      font-family: 'Hind Siliguri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 65px;
+      color: rgba(0, 0, 0, 0.6);
+      /* z-index: 1; */
+      /* border: none; */
+      border: 2px solid #000000;
+      text-align: -webkit-center;
+  }
+
+  
+  .password-container
+  {
+    position: absolute;
+    width: 398px;
+    height: 65px;
+    left: 809px;
+    top: 549px;
+
+  }
+  
+  .password
+  {
+    position: absolute;
+    width: 310px;
+    height: 65px;
+    left: 191px;
+    top: 311px;
+
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 65px;
+    /* identical to box height */
+
+
+    color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #000000;
+    text-align: -webkit-center;
+  }
+  .btn
+  {
+    position: absolute;
+    width: 314px;
+    height: 78px;
+    left: 192px;
+    top: 413px;
+    background: #0B43A4;
+    box-sizing: border-box;
+    border: 2px solid #000000;
+    cursor: pointer;
+
+  }
+  .btn-text
+  {
+   
+    width: 289.24px;
+    height: 78px;
+    left: 878.42px;
+    top: 645px;
+
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 78px;
+    /* identical to box height */
+
+
+    color: #C8DBFB;
+
+  }
+
+  .register
+  {
+    position: absolute;
+    width: 226px;
+    height: 81px;
+    left: 191px;
+    top: 516px;
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 52px;
+    color: #0B43A4;
+    text-decoration: none;
+  }
+  .forget
+  {
+    position: absolute;
+    width: 248px;
+    height: 102px;
+    left: 352px;
+    top: 516px;
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 52px;
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+  }
+
+  a:hover:last-child {
+    color: red;
+  }
+    
+</style>
+
+<div>
+  {% include "helper/logo.html.twig" %}
+
+  <h1 class="title">TODO- APP</h1>  
+  
+  <div class="login-cadre">
+      <h1 class="message">Welcome to Todo-App</h1>
+
+      <form method="post" action="">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        <div>
+            <input class="username" type="email" name="email"  value="{{ last_username }}" autocomplete="email" required autofocus>
+            
+            <input class="password"  type="password" name="password"  autocomplete="current-password" required>
+
+            <input type="hidden" name="_csrf_token"
+                        value="{{ csrf_token('authenticate') }}"
+                        >
+
+            <button class="btn" type="submit">
+                <span class="btn-text">Login</span>
+            </button>
+
+
+            <a class="register" href="/register">Register</a>
+            <a  class="forget"  href="/forget">Forget password ?</a>
+        </div>
+      </form>
+  </div>
+</div>
+
+{% endblock %}

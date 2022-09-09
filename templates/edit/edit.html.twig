@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Todo App{% endblock %}
+
+{% block body %}
+<style>
+    .home-container
+    {
+        
+        width: 676px;
+        height: 65px;
+        left: 404px;
+        top: 99px;
+
+    }
+    
+    .container-list-task
+    {
+        position:relative;
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        margin-bottom: 31px;
+    }
+
+    .cadre-text
+    {
+        position: absolute;
+        width: 554px;
+        height: 65px;
+        left: 404px;
+        top: 99px;
+
+        background: #ECF3FF;
+    }
+
+    .text-task
+    {
+        position: absolute;
+        width: 400px;
+        height: 52px;
+        left: 492px;
+        top: 105px;
+
+        font-family: 'Hind Siliguri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 52px;
+        /* identical to box height */
+
+
+        color: rgba(0, 0, 0, 0.6);
+        background: #ECF3FF;
+        border: none;
+    }
+
+     .add-cadre
+     {
+        position: absolute;
+        width: 122px;
+        height: 65px;
+        left: 958px;
+        top: 99px;
+
+        background: #5275A0;
+     }
+
+     .btn-cadre-text
+     {
+        
+        width: 58px;
+        height: 52px;
+        left: 980px;
+        top: 105px;
+
+        font-family: 'Hind Siliguri';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 52px;
+        /* identical to box height */
+
+
+        color: #FFFFFF;
+        cursor: pointer;
+     }
+     
+
+    
+
+
+
+
+
+
+</style>
+
+<div class="home-container">
+
+        <div style="position: absolute; top: 187px;">
+
+       
+        <form action="/edit/{{task.id}}" method="post">
+        <div class="cadre-text"></div>
+        <input class="text-task" type="text" name="text" placeholder="{{task.title}}">
+
+        <button  class="add-cadre"  type="submit">
+          <span class="btn-cadre-text">Valider</span>
+        </button>
+        
+      </form>
+
+    </div>
+       
+     
+</div>
+{% endblock %}

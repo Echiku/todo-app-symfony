@@ -1,0 +1,284 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Todo App{% endblock %}
+
+{% block body %}
+<style>
+    .title
+    {
+        position: absolute;
+        width: 703px;
+        height: 140px;
+        left: 278px;
+        top: 41px;
+
+        font-family: 'jsMath-cmr10';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 128px;
+        line-height: 140px;
+        /* identical to box height */
+
+
+        color: #FFFFFF;
+    }
+
+    .login-cadre
+    {
+      position: absolute;
+      width: 692px;
+      height: 676px;
+      left: 689px;
+      top: 238px;
+      background:#E5E5E5;
+    }
+
+    .message
+    {
+      /* Welcome to Todo-App */
+
+
+      position: absolute;
+      width: 469px;
+      height: 78px;
+      left: 120px;
+      top: 101px;
+
+      font-family: 'Hind Siliguri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 48px;
+      line-height: 78px;
+      /* identical to box height */
+
+
+      color: #8C72B7;
+
+    }
+
+    .username-cont
+    {
+      position: absolute;
+      width: 398px;
+      height: 70px;
+      left: 809px;
+      top: 448px;
+    }
+    
+    .username-container
+    {
+      box-sizing: border-box;
+
+      position: absolute;
+      width: 398px;
+      height: 65px;
+      left: 809px;
+      top: 448px;
+
+      background: #ECF3FF;
+      border: 2px solid #000000;
+    }
+
+    .username
+    {
+      position: absolute;
+      width: 313px;
+      height: 65px;
+      left: 189px;
+      top: 179px;
+      font-family: 'Hind Siliguri';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 65px;
+      color: rgba(0, 0, 0, 0.6);
+      /* z-index: 1; */
+      /* border: none; */
+      border: 2px solid #000000;
+      text-align: -webkit-center;
+  }
+
+  
+  .password-container
+  {
+    position: absolute;
+    width: 398px;
+    height: 65px;
+    left: 809px;
+    top: 549px;
+
+  }
+  
+  .password
+  {
+    position: absolute;
+    width: 310px;
+    height: 65px;
+    left: 191px;
+    top: 274px;
+
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 65px;
+    /* identical to box height */
+
+
+    color: rgba(0, 0, 0, 0.6);
+    border: 2px solid #000000;
+    text-align: -webkit-center;
+  }
+
+  .confirm_password
+  {
+
+    position: absolute;
+    width: 306px;
+    height: 65px;
+    left: 192px;
+    top: 369px;
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 65px;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+  
+  }
+
+  .name
+  {
+    position: absolute;
+    width: 306px;
+    height: 65px;
+    left: 192px;
+    top: 461px;
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 65px;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+  }
+  .btn
+  {
+    position: absolute;
+    width: 314px;
+    height: 78px;
+    left: 192px;
+    top: 551px;
+    background: #0B43A4;
+    box-sizing: border-box;
+    border: 2px solid #000000;
+    cursor: pointer;
+
+  }
+  .btn-text
+  {
+   
+    width: 289.24px;
+    height: 78px;
+    left: 878.42px;
+    top: 645px;
+
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 78px;
+    /* identical to box height */
+
+
+    color: #C8DBFB;
+
+  }
+
+  .account
+  {
+    position: absolute;
+    width: 309px;
+    height: 52px;
+    left: 191px;
+    top: 622px;
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 52px;
+    color: #000000;
+    text-decoration: none;
+  }
+  .link-login
+  {
+    position: absolute;
+    width: 76px;
+    height: 52px;
+    left: 441px;
+    top: 622px;
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 52px;
+    color: #0D58DA;
+    text-decoration: none;
+  }
+
+  .email-error
+  {
+    position: absolute;
+    top: 251px;
+    left: 189px;
+    color: red;
+    font-weight: 800;
+  }
+  .password-error
+  {
+     position: absolute;
+    top: 346px;
+    left: 189px;
+    color: red;
+    font-weight: 800;
+  }
+    
+</style>
+
+<div>
+  {% include "helper/logo.html.twig" %}
+
+  <h1 class="title">TODO- APP</h1>  
+  
+  <div class="login-cadre">
+      <h1 class="message">Welcome to Todo-App</h1>
+
+      <form method="post" action="/registerUser">
+       <div>
+       
+            <input class="username" type="email" name="email" placeholder="username or email">
+             {% if error_email is defined %}
+            <div class="email-error">{{ error_email}}</div>
+             {% endif %}
+            <input class="password"  type="password" name="password" id="" placeholder="password">
+             {% if error_password is defined %}
+            <div class="password-error">{{ error_password}}</div>
+             {% endif %}
+            <input class="confirm_password"  type="password" name="confirm_password"  placeholder="confirm password">
+           
+            <input class="name" type="text" name="name" placeholder="your name">
+           
+            <button class="btn">
+                <span class="btn-text">Register</span>
+            </button>
+
+
+            <p class="account">Have account already ?</p>
+            <a  class="link-login"  href="/login">login</a>
+       </div>
+       <form>
+  </div>
+</div>
+
+{% endblock %}
